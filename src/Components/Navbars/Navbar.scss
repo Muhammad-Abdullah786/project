@@ -1,0 +1,51 @@
+// @import 'react-typed/dist/animatedCursor.css';
+// @import 'react-typed/dist/typed.css';
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // background-color: #acc8e5;
+    color: #000;
+    padding: 1rem;
+    font-size: 1.2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  
+  
+    h1 {
+      margin: 0;
+    }
+  
+    .links {
+      display: flex;
+      gap: 2rem;
+      justify-content: flex-end;
+      width: 50%;
+  
+      a {
+        color: #000;
+        text-decoration: none;
+        padding: 0.5rem;
+        border-radius: 0.25rem;
+        transition: background-color 0.3s ease-in-out;
+        
+        &:hover {
+          color: #a4a2a2;
+          background-color: #444141;
+        }
+      }
+    }
+  }
+  
