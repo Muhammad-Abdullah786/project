@@ -41,8 +41,7 @@
 
 
 //////////////////////////////////////////////////////////////////////////
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { initializeApp, getApps } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getDatabase } from "firebase/database";
@@ -59,20 +58,17 @@ const firebaseConfig = {
     measurementId: "G-C7E61DKT87"
 };
 
-// Initialize Firebase only if not already initialized
 let app;
 if (!getApps().length) {
     app = initializeApp(firebaseConfig);
 } else {
-    app = getApps()[0]; // Use the default app instance
+    app = getApps()[0];
 }
 
-// Initialize Firebase services
-const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const firestore = getFirestore(app);
 const database = getDatabase(app);
 const storage = getStorage(app);
 
-// Export the services for use in other parts of your app
-export { auth, firestore, database, storage, analytics };
+
+export { auth, firestore, database, storage };
