@@ -1,8 +1,9 @@
-import React from "react";
+import React,{useState} from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input } from "antd";
 import Navbar from "../../../Components/Navbars/Navbar";
 import "./register.css";
+
 const Register = () => {
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
