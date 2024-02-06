@@ -33,9 +33,11 @@ const Slider = () => {
                 Sign Up
               </Button>
             </Link>
-            <Button type="primary" danger ghost>
-              Log In
-            </Button>
+            <Link to="/login">
+              <Button type="primary" danger ghost>
+                Log In
+              </Button>
+            </Link>
           </div>
         </div>
       </nav>
