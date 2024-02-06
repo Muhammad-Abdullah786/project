@@ -1,14 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { auth } from "./../../../firebase/firebaseConfig";
 import Navbar from "../../../Components/Navbars/Navbar";
 import "./register.css";
-
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Checkbox, Form, Input, Alert, message } from "antd";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { app } from "./../../../firebase/firebaseConfig";
 
 const Register = () => {
-  const onFinish = (values) => {
-    console.log("recived values of form ", values);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const onFinish = async (values) => {
+    let { email, password, confirmPassword } = values;
+    if (password !== confirmPassword) {
+      setErrorMessage("Password Should Be the same as Confirm Password");
+      return;
+    }
+
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        message.success(
+          `Welcome ${
+            user.displayName || "New User"
+          }, you have successfully registered.`
+        );
+        setErrorMessage("");
+      })
+
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error(
+          "Error creating account with email and password",
+          errorCode,
+          errorMessage
+        );
+        setErrorMessage(`Registration failed: `);
+      });
   };
 
   return (
@@ -23,6 +52,10 @@ const Register = () => {
           }}
           onFinish={onFinish}
         >
+          {errorMessage && (
+            <Alert message={errorMessage} type="error" showIcon />
+          )}
+
           <h2 className="text-2xl font-bold mb-4">Sign up</h2>
           <Form.Item
             name="email"
