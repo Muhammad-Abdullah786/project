@@ -16,7 +16,7 @@ function Login() {
         const user = userCredential.user;
         message.success(
           `Welcome back ${
-            user.displayName || "New User"
+            user.displayName || "User"
           }, you have successfully Logged In.`
         );
         setErrorMessage("");
@@ -30,7 +30,9 @@ function Login() {
           errorCode,
           errorMessage
         );
-        setErrorMessage(`Log In failed: `);
+        message.error(
+          `Log In failed: Maybe the password or email  was incorrect`
+        );
       });
   };
   return (
@@ -97,7 +99,7 @@ function Login() {
               htmlType="login"
               className="bg-purple-500 hover:bg-purple-700 text-white font-bold text-center rounded focus:outline-none focus:shadow-outline login-form-button "
             >
-              Sign Up
+              Log In
             </Button>
           </Form.Item>
         </Form>
